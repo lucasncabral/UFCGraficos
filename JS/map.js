@@ -3,13 +3,12 @@
       "" + (d.max);
     }
 
-    var width = 700,
-    height = 700, centered;
+    var width = 600,
+    height = 600, centered;
 
     var svg = d3.select("#mapContainer").append("svg")
     .attr("width", width)
     .attr("height", height);
-
 
     var g = svg.append("g");
 
@@ -35,16 +34,15 @@
       return y.qntd - x.qntd ; 
     };
 
-
     function ready(error, shp) {
       if (error) throw error;
       var states = topojson.feature(shp, shp.objects.estados);
       var states_contour = topojson.mesh(shp, shp.objects.estados);
 
 
-      sampleData ={};
 
-      ["AC", "AL", "AM", "AP", "BA", "CE",
+      sampleData ={};
+        ["AC", "AL", "AM", "AP", "BA", "CE",
       "DF", "ES", "GO", "MA", "MG", "MS",
       "MT", "PA", "PB", "PE", "PI", "PR",
       "RJ", "RN", "RO", "RR", "RS", "SC",
@@ -53,7 +51,18 @@
         sampleData[d]={low:0, high:0, avg:0, color:null, max:"", partido:Array()}; 
       });
 
-      d3.csv("./TSE_PRESIDENTE_UF_CANDIDATO_2014.csv", function(data) {
+
+      $.ajax({
+        url : "http://cepesp.io/api/consulta/tse?cargo=1&ano=2014&agregacao_regional=UF.csv",
+        type : 'get',
+        beforeSend : function(){
+          console.log("requisição");
+        }
+      })
+
+      .done(function(result){
+        var data = d3.csv.parse(result);
+
         for(var i = 0; i < data.length;i++){
           if(data[i].NUM_TURNO == 1){
             sampleData[data[i].UF].partido.push({sigla : data[i].SIGLA_PARTIDO , qntd : parseInt(data[i].QTDE_VOTOS)});
@@ -70,7 +79,6 @@
           sampleData[d].max = sampleData[d].partido[0].sigla;
         });
 
-
         g.selectAll(".estado")
         .data(states.features)
         .enter()
@@ -80,17 +88,10 @@
         .style("fill",function(d){ return "#ffffff"; })
         .on("mouseover", mouseOver).on("mouseout", mouseOut).on("click", clicked);
 
-
         var listStates = g.selectAll(".state");
 
         listStates.each(function(d, i) {
-
-          console.log(sampleData[d.id].max);
-
           color = getColorMap(sampleData[d.id].max);
-
-
-
           sampleData[d.id].color = color;
           sampleData[d.id].low = parseFloat(d.properties.volume) ;
           sampleData[d.id].high =  parseFloat(d.properties.capacity);
@@ -106,16 +107,17 @@
       .style("fill",function(d){ return sampleData[d.id].color; })
       .on("mouseover", mouseOver).on("mouseout", mouseOut).on("click", clicked);
 
-
-
       g.append("path")
       .datum(states_contour)
       .attr("d", path)
       .attr("class", "state_contour");
-    });
+        console.log(data);
+      })
+      .fail(function(jqXHR, textStatus, msg){
+        alert(msg);
+      });
 
-
-
+      // Change aqui
 
       function clicked(d){
         var x, y, k;
@@ -153,38 +155,12 @@
       function mouseOut(){
         d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
       }
-
     }
-
 
 // What to do when zooming
 function zoomed() {
   g.style("stroke-width", 1.5 / d3.event.scale + "px");
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-}
-
-function csvJSON(csv){
-
-  var lines=csv.split("\n");
-
-  var result = [];
-
-  var headers=lines[0].split(",");
-
-  for(var i=1;i<lines.length;i++){
-
-    var obj = {};
-    var currentline=lines[i].split(",");
-
-    for(var j=0;j<headers.length;j++){
-      obj[headers[j]] = currentline[j];
-    }
-
-    result.push(obj);
-
-  }
-  //return result; //JavaScript object
-  return JSON.stringify(result); //JSON
 }
 
 function getColorMap(value){
@@ -229,6 +205,5 @@ function getColorMap(value){
   }
   return color;
 }
-
 
 d3.select(self.frameElement).style("height", height + "px");
