@@ -34,15 +34,20 @@
       return y.qntd - x.qntd ; 
     };
 
-    function ready(error, shp) {
+    var shp;
+
+    function ready(error, shps) {
       if (error) throw error;
+      shp = shps;
+      loadMap(shp);
+    }
+
+function loadMap(){
       var states = topojson.feature(shp, shp.objects.estados);
       var states_contour = topojson.mesh(shp, shp.objects.estados);
 
-
-
       sampleData ={};
-        ["AC", "AL", "AM", "AP", "BA", "CE",
+      ["AC", "AL", "AM", "AP", "BA", "CE",
       "DF", "ES", "GO", "MA", "MG", "MS",
       "MT", "PA", "PB", "PE", "PI", "PR",
       "RJ", "RN", "RO", "RR", "RS", "SC",
@@ -51,12 +56,18 @@
         sampleData[d]={low:0, high:0, avg:0, color:null, max:"", partido:Array()}; 
       });
 
+      var cargoAPI = document.getElementById("cargo").value;
+      var ano;
+      if(cargoAPI == 11)
+        ano = 2016;
+      else
+        ano = 2014;
+
 
       $.ajax({
-        url : "http://cepesp.io/api/consulta/tse?cargo=1&ano=2014&agregacao_regional=UF.csv",
+        url : "http://cepesp.io/api/consulta/tse?cargo=" + cargoAPI + "&ano=" + ano + "&agregacao_regional=UF.csv",
         type : 'get',
         beforeSend : function(){
-          console.log("requisição");
         }
       })
 
@@ -69,14 +80,23 @@
           }
         }
 
+        var i = 0;
+
         ["AC", "AL", "AM", "AP", "BA", "CE",
         "DF", "ES", "GO", "MA", "MG", "MS",
         "MT", "PA", "PB", "PE", "PI", "PR",
         "RJ", "RN", "RO", "RR", "RS", "SC",
         "SE", "SP", "TO", "ZZ"]
         .forEach(function(d){
-          sampleData[d].partido.sort(sortNumber);
-          sampleData[d].max = sampleData[d].partido[0].sigla;
+          if(d != "ZZ"){
+            sampleData[d].partido.sort(sortNumber);
+            try{
+              i++;
+              sampleData[d].max = sampleData[d].partido[0].sigla;
+            } catch(ex){
+              //alert('Ocorreu um problema, por favor recarregue a pagina!');
+            }
+          }
         });
 
         g.selectAll(".estado")
@@ -111,8 +131,7 @@
       .datum(states_contour)
       .attr("d", path)
       .attr("class", "state_contour");
-        console.log(data);
-      })
+    })
       .fail(function(jqXHR, textStatus, msg){
         alert(msg);
       });
@@ -155,7 +174,7 @@
       function mouseOut(){
         d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
       }
-    }
+}
 
 // What to do when zooming
 function zoomed() {
@@ -199,11 +218,72 @@ function getColorMap(value){
     case "PV":
     color = "#006600";
     break;
+    case "PPS":
+    color = "#FA7F72";
+    break;
+    case "PTB":
+    color = "#00bfff";
+    break;   
+    case "PDT":
+    color = "#F60";
+    break; 
+    case "PFL":
+    color = "#99ff33";
+    break; 
+    case "PMDB":
+    color = "#2E8B57";
+    break; 
+    case "PPB":
+    color = "#00bfff";
+    break; 
+    case "PC do B":
+    color = "#DA251C";
+    break; 
+    case "PSD":
+    color = "#293490";
+    break;  
+    case "DEM":
+    color = "#99ff33";
+    break;  
+    case "SD":
+    color = "#D86425";
+    break;  
+    case "PRB":
+    color = "#4DBCE7";
+    break;  
+    case "PP":
+    color = "#ED5F36";
+    break;  
+    case "PTC":
+    color = "#009038";
+    break;
+    case "PL":
+    color = "#FF4500";
+    break; 
+    case "PR":
+    color = "#0F0073";
+    break;   
+    case "PROS":
+    color = "#F78907";
+    break;  
+    case "REDE":
+    color = "#2BC";
+    break;  
+    case "PMN":
+    color = "#DA010A";
+    break; 
+    case "PTN":
+    color = "#006600";
+    break;      
     default:
     color = "#000";
     break;
   }
   return color;
 }
+
+$( "#cargo" ).change(function() {
+  loadMap();
+});
 
 d3.select(self.frameElement).style("height", height + "px");

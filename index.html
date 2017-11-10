@@ -35,10 +35,20 @@
   <script src="https://d3js.org/d3-queue.v2.min.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
   <div id="all">
-    <div id="mapContainer">
-      
-      <div id="tooltip"></div> 
+    <p>
+      <b>Cargo: </b>
+      <select id="cargo">
+        <option value="1">Presidente</option>
+        <option value="3">Governador</option>
+        <option value="5">Senador</option>
+        <option value="6">Deputado Federal</option>
+        <option value="7">Deputado Estadual</option>
+        <option value="11">Prefeito</option>
+      </select>
+    </p>
 
+    <div id="mapContainer">
+      <div id="tooltip"></div> 
     </div>
 
     <div id="label1">
