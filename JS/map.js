@@ -1,9 +1,6 @@
     function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
-      return "<h4>"+n+"</h4><table>"+
-      "<tr><td>Volume</td><td>"+(d.low)+" hm³ </td></tr>"+
-      "<tr><td>Capacidade</td><td>"+(d.high)+" hm³ </td></tr>"+
-      "<tr><td> % </td><td>  "+(d.avg)+" </td></tr>"+
-      "</table>";
+      return "<h4>"+n+"</h4>"+
+      "" + (d.max);
     }
 
     var width = 700,
