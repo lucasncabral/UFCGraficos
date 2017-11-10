@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visualização da Informação</title>
+
+  <link rel="stylesheet" type="text/css" href="CSS/map.css">
+</head>
+
+<style type="text/css">
+.state {
+  fill-opacity:0.7;
+}
+
+.state_contour {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+}
+
+.state:hover{
+  fill-opacity:1;
+}
+</style>
+
+<body>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <div id="all">
+    <div id="mapContainer">
+      
+      <div id="tooltip"></div> 
+
+    </div>
+
+    <div id="label1">
+      
+
+    </div>
+  </div>
+  <!- JS ->
+  <script language="javascript" src="JS/map.js"> </script>
+</body>
+</html>
