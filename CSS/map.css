@@ -25,10 +25,10 @@
 
   #all{
     margin-top: 50px;
-    display: table;
  }
 
  #mapContainer{
+  margin-top: 50px;
   float: left;
   margin-left: 50px;
   margin-top: 10px;
