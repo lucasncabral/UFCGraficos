@@ -22,15 +22,11 @@
     border-color:red;
   }
 
-  #all{
-    margin-top: 50px;
- }
 
  #mapContainer{
-  margin-top: 50px;
+  margin-top: 20px;
   float: left;
-  margin-left: 50px;
-  margin-top: 10px;
+  margin-left: 40px;
   }
 
 #tooltip {   
