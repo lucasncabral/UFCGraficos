@@ -40,9 +40,10 @@
       if (error) throw error;
       shp = shps;
       loadMap(shp);
+      loadTable(null);
     }
 
-function loadMap(){
+    function loadMap(){
       var states = topojson.feature(shp, shp.objects.estados);
       var states_contour = topojson.mesh(shp, shp.objects.estados);
 
@@ -131,9 +132,9 @@ function loadMap(){
       .datum(states_contour)
       .attr("d", path)
       .attr("class", "state_contour");
-    })
-      .fail(function(jqXHR, textStatus, msg){
-        alert(msg);
+      }).fail(function(jqXHR, textStatus, msg){
+        console.log("erro");
+        //alert(textStatus);
       });
 
       // Change aqui
@@ -174,7 +175,7 @@ function loadMap(){
       function mouseOut(){
         d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
       }
-}
+    }
 
 // What to do when zooming
 function zoomed() {
@@ -182,108 +183,30 @@ function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 
+var group1 = ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"];
+var group2 = ["PC do B", "PROS", "PSB", "PT", "REDE", "PSOL" , "PRTB"];
+var group3 = ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"];
+var group4 = ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD","PSDC", "SD", "PHS", "PODE","PSC","PSDB","PRP", "PMB"];
+
 function getColorMap(value){
   var color = "";
-  switch(value){
-    case "PCB":
-    color = "#DA251C";
-    break;
-    case "PCO":
-    color = "#9F030A";
-    break;
-    case "PRTB":
-    color = "#2cb53f";
-    break;
-    case "PSB":
+
+  if(group1.find(item => {return item === value})){
     color = "#FC0";
-    break;
-    case "PSC":
-    color = "#009038";
-    break;
-    case "PSDB":
-    color = "#1e90ff";
-    break;
-    case "PSDC":
-    color = "#293490";
-    break;
-    case "PSOL":
-    color = "#ED040E";
-    break;
-    case "PSTU":
-    color = "#FF0000";
-    break;
-    case "PT":
+  } else if (group2.find(item => {return item === value})){
     color = "#DA1208";
-    break;
-    case "PV":
-    color = "#006600";
-    break;
-    case "PPS":
-    color = "#FA7F72";
-    break;
-    case "PTB":
-    color = "#00bfff";
-    break;   
-    case "PDT":
-    color = "#F60";
-    break; 
-    case "PFL":
-    color = "#99ff33";
-    break; 
-    case "PMDB":
-    color = "#2E8B57";
-    break; 
-    case "PPB":
-    color = "#00bfff";
-    break; 
-    case "PC do B":
-    color = "#DA251C";
-    break; 
-    case "PSD":
-    color = "#293490";
-    break;  
-    case "DEM":
-    color = "#99ff33";
-    break;  
-    case "SD":
-    color = "#D86425";
-    break;  
-    case "PRB":
-    color = "#4DBCE7";
-    break;  
-    case "PP":
-    color = "#ED5F36";
-    break;  
-    case "PTC":
-    color = "#009038";
-    break;
-    case "PL":
-    color = "#FF4500";
-    break; 
-    case "PR":
-    color = "#0F0073";
-    break;   
-    case "PROS":
-    color = "#F78907";
-    break;  
-    case "REDE":
-    color = "#2BC";
-    break;  
-    case "PMN":
-    color = "#DA010A";
-    break; 
-    case "PTN":
-    color = "#006600";
-    break;      
-    default:
-    color = "#000";
-    break;
+  } else if (group3.find(item => {return item === value})){
+    color =  "#006600";
+  } else {
+    color = "#1e90ff";
   }
   return color;
 }
 
 $( "#cargo" ).change(function() {
   loadMap();
+  loadTable();
+
 });
 
 d3.select(self.frameElement).style("height", height + "px");

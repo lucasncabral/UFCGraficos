@@ -1,6 +1,6 @@
 [
   {
-    "forename": "PT",
+    "forename": "Grupo 1",
     "sex": "m",
     "births": [
       21470788,
@@ -21,10 +21,10 @@
       44234323,
       43267668
     ],
-    "forenameUnique": "PT",
-    "id": "PT"
+    "forenameUnique": "Grupo 1",
+    "id": "Grupo 1"
   },  {
-    "forename": "PSDB",
+    "forename": "Grupo 2",
     "sex": "m",
     "births": [
       35923719,
@@ -45,13 +45,13 @@
       34324232,
       34897211
     ],
-    "forenameUnique": "PSDB",
-    "id": "PSDB"
+    "forenameUnique": "Grupo 2",
+    "id": "Grupo 2"
   },  {
-    "forename": "PSB",
+    "forename": "Grupo 3",
     "sex": "m",
     "births": [
-      0,
+      10,
       0,
       0,
       0,
@@ -69,10 +69,10 @@
       0,
       22176619
     ],
-    "forenameUnique": "PSB",
-    "id": "PSB"
+    "forenameUnique": "Grupo 3",
+    "id": "Grupo 3"
   },  {
-    "forename": "PV",
+    "forename": "Grupo 4",
     "sex": "m",
     "births": [
       212877,
@@ -93,8 +93,8 @@
       5377118,
       630099
     ],
-    "forenameUnique": "PV",
-    "id": "PV"
+    "forenameUnique": "Grupo 4",
+    "id": "Grupo 4"
   },  {
     "forename": "NULO/BRANCO",
     "sex": "m",

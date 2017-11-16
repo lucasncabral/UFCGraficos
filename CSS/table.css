@@ -86,17 +86,20 @@ svg:not(:root){overflow:hidden}
 
 figure,form{margin:0}
 
-fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+fieldset{border:1px solid silver;margin:0 2px;
+		padding:.35em .625em .75em}
 
-table{border-collapse:collapse;border-spacing:0}
+table{border-collapse:collapse;
+	border-spacing:0}
 
 #app{
 	position: relative;
 	width: 800px;
 	height: 600px;
-	margin-top: 60px;
+	margin-top: 30px;
 	float: left;
 }
+
 
 @font-face{
 	font-family:HelveticaLTStd-Bold;

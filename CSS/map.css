@@ -22,6 +22,10 @@
     border-color:red;
   }
 
+  #groups{
+    margin-left: 30px;
+  }
+
 
  #mapContainer{
   margin-top: 20px;
