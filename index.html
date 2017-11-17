@@ -17,10 +17,12 @@
   crossorigin="anonymous"></script>
 
 
+
+
   <script type="text/javascript">
 
     var group1 = ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"];
-    var group2 = ["PC do B", "PROS", "PSB", "PT", "REDE", "PSOL" , "PRTB"];
+    var group2 = ["PC do B", "PROS", "PT", "REDE", "PSOL" , "PRTB"];
     var group3 = ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"];
     var group4 = ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD","PSDC", "SD", "PHS", "PODE","PSC","PSDB","PRP", "PMB"];
   </script>
@@ -45,7 +47,7 @@
 
 <body>
 
-  <div class="row">
+  <div class="row" id="test">
   </div>
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -53,26 +55,38 @@
   <script src="https://d3js.org/topojson.v1.min.js"></script>
 
   <div id="all">
-    <p>
-      <b>Cargo: </b>
-      <select id="cargo">
-        <option value="1">Presidente</option>
-        <option value="3">Governador</option>
-        <option value="5">Senador</option>
-        <option value="6">Deputado Federal</option>
-        <option value="7">Deputado Estadual</option>
-        <option value="11">Prefeito</option>
-      </select>
-    </p>
+    <div align="center">
+      <p>
+        <b>Cargo: </b>
+        <select id="cargo">
+          <option value="1">Presidente</option>
+          <option value="3">Governador</option>
+          <option value="5">Senador</option>
+          <option value="6">Deputado Federal</option>
+          <option value="7">Deputado Estadual</option>
+          <option value="11">Prefeito</option>
+        </select>
+      </p>
+    </div>
 
     <div id="mapContainer">
       <div id="tooltip"></div> 
     </div>
 
     <div id="app">
-    </div>
 
+    </div>
     <div id="label1">
+
+    <a href="http://www.decembercafe.org/demo/mindmap/">Mind Map</a>
+    <a href="https://bazardecomentarios.wordpress.com/2016/09/06/a-arvore-genealogica-dos-partidos-brasileiros/">Arvore</a>
+    <a href="http://vizuly.io/product/weighted-tree/?demo=d3js">Weighted Tree</a>
+    <a href="https://mohansun-canvas.herokuapp.com/content/training/">SalesForce</a>
+    <a href="https://risacher.org/galaxy-chart/">Galaxy</a>
+    <a href="http://www.decembercafe.org/demo/relation/">Relationship</a>
+    <a href="https://bl.ocks.org/dahis39/f28369f0b17b456ac2f1fa9b937c5002">Web</a>
+
+
 
     </div>
   </div>

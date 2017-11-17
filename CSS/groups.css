@@ -3,9 +3,10 @@
     background-color: #F4F4F4;
     border: black 1px solid;
     width: 50px; 
-    height: 10px;
-    margin: 10px;
-    padding: 5px;
+    height: 15px;
+    margin: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
     border-radius: 15px;
     font-size: 14px;
     text-align: center;
@@ -15,12 +16,12 @@
 
   .drop_zone {
     background-color: white; 
-    width: 340px; 
-    height: 200px;
+    width: 300px; 
+    height: 180px;
     padding: 8px;
     font-size: 18px;
     border-radius: 15px;
-    margin-left: 10px;
+    margin-left: 50px;
     margin-top: 10px;
     float: left;
   }
