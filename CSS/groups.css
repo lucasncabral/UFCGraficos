@@ -1,0 +1,26 @@
+  .objects {
+    display:inline-block;
+    background-color: #F4F4F4;
+    border: black 1px solid;
+    width: 50px; 
+    height: 10px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 2px 2px 2px #999;
+    cursor: move;
+  }
+
+  .drop_zone {
+    background-color: white; 
+    width: 340px; 
+    height: 200px;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+  }

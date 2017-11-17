@@ -40,10 +40,10 @@
       if (error) throw error;
       shp = shps;
       loadMap(shp);
-      loadTable(null);
+      loadTable();
     }
 
-    function loadMap(){
+function loadMap(){
       var states = topojson.feature(shp, shp.objects.estados);
       var states_contour = topojson.mesh(shp, shp.objects.estados);
 
@@ -132,9 +132,9 @@
       .datum(states_contour)
       .attr("d", path)
       .attr("class", "state_contour");
-      }).fail(function(jqXHR, textStatus, msg){
-        console.log("erro");
-        //alert(textStatus);
+    })
+      .fail(function(jqXHR, textStatus, msg){
+        alert(msg);
       });
 
       // Change aqui
@@ -175,7 +175,7 @@
       function mouseOut(){
         d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
       }
-    }
+}
 
 // What to do when zooming
 function zoomed() {
@@ -183,30 +183,32 @@ function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 
-var group1 = ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"];
-var group2 = ["PC do B", "PROS", "PSB", "PT", "REDE", "PSOL" , "PRTB"];
-var group3 = ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"];
-var group4 = ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD","PSDC", "SD", "PHS", "PODE","PSC","PSDB","PRP", "PMB"];
-
-function getColorMap(value){
+function getColorMap(element){
   var color = "";
 
-  if(group1.find(item => {return item === value})){
-    color = "#FC0";
-  } else if (group2.find(item => {return item === value})){
+/**
+   var group1 = ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"];
+  var group2 = ["PC do B", "PROS", "PSB", "PT", "REDE", "PSOL" , "PRTB"];
+  var group3 = ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"];
+  var group4 = ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD","PSDC", "SD", "PHS", "PODE","PSC","PSDB","PRP", "PMB"];
+  */
+
+  if(group1.find(item => {return item === element})){
+    color = "FC0";
+  } else if (group2.find(item => {return item === element})){
     color = "#DA1208";
-  } else if (group3.find(item => {return item === value})){
-    color =  "#006600";
+  } else if (group3.find(item => {return item === element})){
+    color = "#006600" ;
   } else {
     color = "#1e90ff";
   }
+
+
   return color;
 }
 
 $( "#cargo" ).change(function() {
   loadMap();
-  loadTable();
-
 });
 
 d3.select(self.frameElement).style("height", height + "px");

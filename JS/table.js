@@ -46,7 +46,6 @@ function loadTable(dateValues){
 				}
 
 				function u(t,n,e){
-					console.log(e.length);
 					switch(e.length){
 						case 0:
 						return t.call(n);
