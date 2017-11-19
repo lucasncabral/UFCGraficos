@@ -1,36 +1,44 @@
-  .state {
-    fill-opacity:0.7;
-  }
-  
-  .state_contour {
-    fill: none;
-    stroke: #a9a9a9;
-    stroke-width: 1;
-  }
+html, body{
+  height: 100%;
+}
 
-  .state:hover{
-    fill-opacity:1;
-  }
+body {
+  background: url('../IMAGES/background.jpg');
+}
 
-  #label1{
-    background-color: white;
-    border: 2px solid;
-    float: left;
-    margin-left: 50px;
-    width: 90%;
-    height: 500px;
-    border-color:red;
-  }
+.state {
+  fill-opacity:0.7;
+}
 
-  #groups{
-    margin-left: 30px;
-  }
+.state_contour {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+}
+
+.state:hover{
+  fill-opacity:1;
+}
+
+#label1{
+  background-color: white;
+  border: 2px solid;
+  float: left;
+  margin-left: 50px;
+  width: 90%;
+  height: 500px;
+  border-color:red;
+}
+
+#groups{
+  margin-left: 30px;
+}
 
 
- #mapContainer{
+#mapContainer{
   float: left;
   margin-left: 40px;
-  }
+}
 
 #tooltip {   
   position: absolute;           

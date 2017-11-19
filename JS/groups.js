@@ -61,10 +61,10 @@ function drag_end(event) {
 
 
 
- $(document).ready(function(){
+$(document).ready(function(){
   var divGroups = $('.row');
 
-  divGroups.append('<div id="drop_zone1" class="drop_zone" class="col-sm-3" style= "border: #FC0 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div id="drop_zone1" class="drop_zone" class="col-sm-3" style= "border: #ffcc0082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group1Div = $('#drop_zone1');
   group1Div.append('<p style="margin: 0px">Grupo 1</p>')
   var count = 0;
@@ -74,7 +74,7 @@ function drag_end(event) {
   });
 
 
-  divGroups.append('<div id="drop_zone2" class="drop_zone" class="col-sm-3" style= "border: #DA1208 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div id="drop_zone2" class="drop_zone" class="col-sm-3" style= "border: #da120882 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group2Div = $('#drop_zone2');
   group2Div.append('<p style="margin: 0px">Grupo 2</p>')
   group2.forEach(function(d){
@@ -82,7 +82,7 @@ function drag_end(event) {
     count++;
   });
 
-  divGroups.append('<div id="drop_zone3" class="drop_zone" class="col-sm-3" style= "border: #006600 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div id="drop_zone3" class="drop_zone" class="col-sm-3" style= "border: #00660082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group3Div = $('#drop_zone3');
   group3Div.append('<p style="margin: 0px">Grupo 3</p>')
   group3.forEach(function(d){
@@ -90,7 +90,7 @@ function drag_end(event) {
     count++;
   });
 
-  divGroups.append('<div id="drop_zone4" class="drop_zone" class="col-sm-3" style= "border: #1e90ff 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div id="drop_zone4" class="drop_zone" class="col-sm-3" style= "border: #1e90ff7d 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group4Div = $('#drop_zone4');
   group4Div.append('<p style="margin: 0px">Grupo 4</p>');
   group4.forEach(function(d){
