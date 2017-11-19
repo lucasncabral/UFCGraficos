@@ -347,7 +347,7 @@ n.initialRange=n.defaultDuration=n.fullRange=n.years=void 0,n.forenameColor=o,n.
 	m:s.scaleOrdinal().range(getColors()),
 	f:s.scaleOrdinal().range(["#a15599","#d57599","#b98c6f","#e0da2f"])
 }
-,h=n.years=f.default.range(1998,2015);n.fullRange=s.extent(h),n.defaultDuration=3000,n.initialRange={from:h[0],to:f.default.last(h)+1}},
+,h=n.years=f.default.range(1998,2015);n.fullRange=s.extent(h),n.defaultDuration=2000,n.initialRange={from:h[0],to:f.default.last(h)+1}},
 
 function(t,n,e){(function(n){
 	function e(t,n){

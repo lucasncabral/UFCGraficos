@@ -41,6 +41,7 @@
       shp = shps;
       loadMap(shp);
       loadTable();
+      loadTree();
     }
 
 function loadMap(){
