@@ -6,6 +6,9 @@
     var width = 600,
     height = 600, centered;
 
+    var stateSelect = "";
+    var reload = false;
+
     var svg = d3.select("#mapContainer").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -138,8 +141,6 @@
         alert(msg);
       });
 
-      // Change aqui
-
       function clicked(d){
         var x, y, k;
 
@@ -149,7 +150,21 @@
           y = centroid[1];
           k = 4;
           centered = d;
+          stateSelect = d.id;
+          if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
+            loadTree();
+          }
         } else {
+          if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
+            document.getElementById("cargo").value = 1;
+            loadTree();
+          }
+
+          reload = true;
+          loadMap();
+          loadTree();
+          stateSelect = "";
+
           x = width / 2;
           y = height / 2;
           k = 1;
@@ -163,6 +178,9 @@
         .duration(750)
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
+        
+
+        console.log(stateSelect);
       }
 
       function mouseOver(d){
@@ -209,6 +227,13 @@ function getColorMap(element){
 }
 
 $( "#cargo" ).change(function() {
+  if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7 || document.getElementById("cargo").value == 11){
+    if(stateSelect == ""){
+      alert('You need select a state before');
+      document.getElementById("cargo").value = 1;
+    }
+  }
+  reload = true;
   loadMap();
   loadTree();
 });

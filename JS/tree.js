@@ -5,11 +5,14 @@ http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=1&selected_columns[]=ANO
 function loadTree(){
   var codCargo = document.getElementById("cargo").value;
   var url;
-  if (codCargo == 11 || codCargo == 13){
-    url = "http://cepesp.io/api/consulta/candidatos?ano=2016&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
+
+  if (codCargo == 6 || codCargo == 7) {   
+    url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA&selected_columns[]=SIGLA_UE&columns[0][name]=SIGLA_UE&columns[0][search][value]=" + stateSelect;
   } else {
     url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
-   }
+  }
+
+  console.log(url);
 
   $.ajax({
     url : url,
@@ -100,6 +103,19 @@ function loadTree(){
   var countGroup2 = 0;
   var countGroup3 = 0;
   var countGroup4 = 0;
+  var names = [];
+  var candidatos = [];
+
+  var maxAge = new Object();
+  maxAge.idade = 0;
+  var minAge = new Object();
+  minAge.idade = 100;
+  var countMale = 0;
+  var countWoman = 0;
+  var countSuperiorCompleto = 0;
+  var countSuperioIncompleto = 0;
+  var countEnsinoMedio = 0;
+  var countEnsinoMedioIncompleto = 0;
   for(var i = 0; i < data.length;i++){
     if(data[i].DESPESA_MAX_CAMPANHA >= 1 || data[i].CODIGO_CARGO > 1){
       var element = data[i].SIGLA_PARTIDO;
@@ -129,7 +145,8 @@ function loadTree(){
         countGroup4++;
       }
 
-      if(indexPartido > 0){
+      if(indexPartido > 0 && names.indexOf(data[i].NOME_URNA_CANDIDATO) < 0){
+        names.push(data[i].NOME_URNA_CANDIDATO);
         partido.name = [data[i].NOME_URNA_CANDIDATO],
         partido.key = data[i].NOME_URNA_CANDIDATO;
         partido.size = 1;
@@ -138,9 +155,43 @@ function loadTree(){
         jsonData.children[indexGroup].children[indexPartido].size++;
       }
 
+      // TOOD AUMENTAR AQUI
+      // SIGLA_UE,NUMERO_CANDIDATO,NOME_URNA_CANDIDATO,SIGLA_PARTIDO,IDADE_DATA_ELEICAO,DESCRICAO_SEXO,DESCRICAO_GRAU_INSTRUCAO
+      partido.estado = data[i].SIGLA_UE;
+      partido.numero = data[i].NUMERO_CANDIDATO;
+      partido.idade = data[i].IDADE_DATA_ELEICAO;
+      partido.sexo = data[i].DESCRICAO_SEXO;
+      partido.grau = data[i].DESCRICAO_GRAU_INSTRUCAO;
+
+      if(partido.grau == "SUPERIOR COMPLETO")
+        countSuperiorCompleto++;
+      else if(partido.grau == "SUPERIOR INCOMPLETO")
+        countSuperioIncompleto++;
+      else if(partido.grau == "ENSINO MÉDIO COMPLETO")
+        countEnsinoMedio++;
+      else 
+        countEnsinoMedioIncompleto++;
+
+      if(partido.sexo == "MASCULINO")
+        countMale++;
+      else
+        countWoman++;
+
+      if(partido.idade > maxAge.idade){
+          maxAge.idade = partido.idade;
+          maxAge.name = partido.name;
+          maxAge.partido = element;
+      }
+
+      if(partido.idade < minAge.idade){
+          minAge.idade = partido.idade;
+          minAge.name = partido.name;
+          minAge.partido = element;
+      }
+      candidatos[partido.name] = partido;
+      candidatos.length++;
     }
   }
-
 
   jsonData.children[0].size = countGroup1;
   jsonData.children[1].size = countGroup2;
@@ -169,6 +220,12 @@ function loadTree(){
 
 // adding the svg to the html structure
 d3.select("div#tree").select("svg").remove();
+
+// TODO AQUI
+var divText = $('#label1');
+divText.html("");
+divText.append("<h3>Candidatos eleição " + "2016" + "</h3><h4>Total: " + candidatos.length +" candidatos</h4><br><h4>Sexo:</h4><h5>" + countMale +" Masculino</h5><h5>" + countWoman + " Feminino</h5><br><h4>Grau de Instrução:</h4><h5>" + countSuperiorCompleto + " com Superior Completo</h5><h5>" + countSuperioIncompleto +" com Superior Incompleto</h5><h5>" + countEnsinoMedio +" com Ensino Médio</h5><h5>" + countEnsinoMedioIncompleto + " inferior a Ensino Médio</h5><br><h4>Idade(" + minAge.idade  + "~" + maxAge.idade + "):</h4><h5>" + minAge.idade + " anos - " + minAge.name + " - " + minAge.partido + "</h5><h5>" + maxAge.idade  + " anos - " + maxAge.name + " - " + maxAge.partido + "</h5>");
+
 
 var svg = d3.select("div#tree").append("svg")
 .attr("width", width + margin.right + margin.left)
