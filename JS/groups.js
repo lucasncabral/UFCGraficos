@@ -17,6 +17,7 @@ function drag_drop(event) {
     console.log(group1);
     droppedIn = true;
     loadMap();
+    loadTree();
   }
 }
 

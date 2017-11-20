@@ -3,8 +3,16 @@ http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=1&selected_columns[]=ANO
 */
 
 function loadTree(){
+  var codCargo = document.getElementById("cargo").value;
+  var url;
+  if (codCargo == 11 || codCargo == 13){
+    url = "http://cepesp.io/api/consulta/candidatos?ano=2016&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
+  } else {
+    url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
+   }
+
   $.ajax({
-    url : "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA",
+    url : url,
     type : 'get',
     beforeSend : function(){
     }
@@ -93,7 +101,7 @@ function loadTree(){
   var countGroup3 = 0;
   var countGroup4 = 0;
   for(var i = 0; i < data.length;i++){
-    if(data[i].DESPESA_MAX_CAMPANHA >= 1){
+    if(data[i].DESPESA_MAX_CAMPANHA >= 1 || data[i].CODIGO_CARGO > 1){
       var element = data[i].SIGLA_PARTIDO;
       var indexGroup;
       var indexPartido;
