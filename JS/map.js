@@ -44,7 +44,7 @@
       loadTree();
     }
 
-function loadMap(){
+    function loadMap(){
       var states = topojson.feature(shp, shp.objects.estados);
       var states_contour = topojson.mesh(shp, shp.objects.estados);
 
@@ -176,7 +176,7 @@ function loadMap(){
       function mouseOut(){
         d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
       }
-}
+    }
 
 // What to do when zooming
 function zoomed() {
@@ -210,6 +210,7 @@ function getColorMap(element){
 
 $( "#cargo" ).change(function() {
   loadMap();
+  loadTree();
 });
 
 d3.select(self.frameElement).style("height", height + "px");
