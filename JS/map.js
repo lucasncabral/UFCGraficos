@@ -153,16 +153,19 @@
           stateSelect = d.id;
           if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
             loadTree();
+            loadTable();
           }
         } else {
           if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
             document.getElementById("cargo").value = 1;
             loadTree();
+            loadTable();
           }
 
           reload = true;
           loadMap();
           loadTree();
+          loadTable();
           stateSelect = "";
 
           x = width / 2;
@@ -205,13 +208,6 @@ function zoomed() {
 function getColorMap(element){
   var color = "";
 
-/**
-   var group1 = ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"];
-  var group2 = ["PC do B", "PROS", "PSB", "PT", "REDE", "PSOL" , "PRTB"];
-  var group3 = ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"];
-  var group4 = ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD","PSDC", "SD", "PHS", "PODE","PSC","PSDB","PRP", "PMB"];
-  */
-
   if(group1.find(item => {return item === element})){
     color = "FC0";
   } else if (group2.find(item => {return item === element})){
@@ -227,15 +223,17 @@ function getColorMap(element){
 }
 
 $( "#cargo" ).change(function() {
-  if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7 || document.getElementById("cargo").value == 11){
+  if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
     if(stateSelect == ""){
       alert('You need select a state before');
       document.getElementById("cargo").value = 1;
     }
   }
+
   reload = true;
   loadMap();
   loadTree();
+  loadTable();
 });
 
 d3.select(self.frameElement).style("height", height + "px");

@@ -1,13 +1,9 @@
-/*
-http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=1&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA
-*/
-
 function loadTree(){
   var codCargo = document.getElementById("cargo").value;
   var url;
 
   if (codCargo == 6 || codCargo == 7) {   
-    url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA&selected_columns[]=SIGLA_UE&columns[0][name]=SIGLA_UE&columns[0][search][value]=" + stateSelect;
+    url = "http://cepesp.io/api/consulta/tse?cargo=" + codCargo + "&agregacao_regional=1&agregacao_politica=1&anos%5B%5D=2014&anos%5B%5D=2010&anos%5B%5D=2006&anos%5B%5D=2002&anos%5B%5D=1998&uf_filter=&mun_filter=&brancos=1&nulos=1&columns[0][name]=UF&columns[0][search][value]=" + stateSelect;
   } else {
     url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
   }
@@ -26,34 +22,18 @@ function loadTree(){
     jsonData.children = [];
     var size1,size2,size3,size4;
 
-    jsonData.children[0] = new Object();
-    jsonData.children[0].colorCode = "Group 1";
-    jsonData.children[0].children = [];
-    jsonData.children[0].name = ["Grupo 1"];
-    jsonData.children[0].key = "Grupo 1";
-  // SIZE CHANGE
 
 
-  jsonData.children[1] = new Object();
-  jsonData.children[1].colorCode = "Group 2";
-  jsonData.children[1].children = [];
-  jsonData.children[1].name = ["Grupo 2"];
-  jsonData.children[1].key = "Grupo 2";
+  var i
+  for(i = 0; i < 4; i++) {
 
-  jsonData.children[2] = new Object();
-  jsonData.children[2].colorCode = "Group 3";
-  jsonData.children[2].children = [];
-  jsonData.children[2].name = ["Grupo 3"];
-  jsonData.children[2].key = "Grupo 3";
-
-  jsonData.children[3] = new Object();
-  jsonData.children[3].colorCode = "Group 4";
-  jsonData.children[3].children = [];
-  jsonData.children[3].name = ["Grupo 4"];
-  jsonData.children[3].key = "Grupo 4";
-
+    jsonData.children[i] = new Object();
+    jsonData.children[i].colorCode = "Group " + (i + 1);
+    jsonData.children[i].children = [];
+    jsonData.children[i].name = ["Grupo " + (i + 1)];
+    jsonData.children[i].key = "Grupo " + (i + 1);
+  }
   jsonData.name = "assignment/ass1-anna-activities";
-
 
   var count = 0;
   group1.forEach(function(d){
@@ -178,15 +158,15 @@ function loadTree(){
         countWoman++;
 
       if(partido.idade > maxAge.idade){
-          maxAge.idade = partido.idade;
-          maxAge.name = partido.name;
-          maxAge.partido = element;
+        maxAge.idade = partido.idade;
+        maxAge.name = partido.name;
+        maxAge.partido = element;
       }
 
       if(partido.idade < minAge.idade){
-          minAge.idade = partido.idade;
-          minAge.name = partido.name;
-          minAge.partido = element;
+        minAge.idade = partido.idade;
+        minAge.name = partido.name;
+        minAge.partido = element;
       }
       candidatos[partido.name] = partido;
       candidatos.length++;
@@ -224,7 +204,8 @@ d3.select("div#tree").select("svg").remove();
 // TODO AQUI
 var divText = $('#label1');
 divText.html("");
-divText.append("<h3>Candidatos eleição " + "2016" + "</h3><h4>Total: " + candidatos.length +" candidatos</h4><br><h4>Sexo:</h4><h5>" + countMale +" Masculino</h5><h5>" + countWoman + " Feminino</h5><br><h4>Grau de Instrução:</h4><h5>" + countSuperiorCompleto + " com Superior Completo</h5><h5>" + countSuperioIncompleto +" com Superior Incompleto</h5><h5>" + countEnsinoMedio +" com Ensino Médio</h5><h5>" + countEnsinoMedioIncompleto + " inferior a Ensino Médio</h5><br><h4>Idade(" + minAge.idade  + "~" + maxAge.idade + "):</h4><h5>" + minAge.idade + " anos - " + minAge.name + " - " + minAge.partido + "</h5><h5>" + maxAge.idade  + " anos - " + maxAge.name + " - " + maxAge.partido + "</h5>");
+var ano = 
+divText.append("<h3>Candidatos eleição " + "2014" + "</h3><h4>Total: " + candidatos.length +" candidatos</h4><br><h4>Sexo:</h4><h5>" + countMale +" Masculino</h5><h5>" + countWoman + " Feminino</h5><br><h4>Grau de Instrução:</h4><h5>" + countSuperiorCompleto + " com Superior Completo</h5><h5>" + countSuperioIncompleto +" com Superior Incompleto</h5><h5>" + countEnsinoMedio +" com Ensino Médio</h5><h5>" + countEnsinoMedioIncompleto + " inferior a Ensino Médio</h5><br><h4>Idade(" + minAge.idade  + "~" + maxAge.idade + "):</h4><h5>" + minAge.idade + " anos - " + minAge.name + " - " + minAge.partido + "</h5><h5>" + maxAge.idade  + " anos - " + maxAge.name + " - " + maxAge.partido + "</h5>");
 
 
 var svg = d3.select("div#tree").append("svg")
@@ -247,6 +228,8 @@ update(root);
 //});
 
 d3.select(self.frameElement).style("height", "800px");
+if(codCargo == 1)
+  expandAll();
 
 /**
  * Updates the node.
@@ -431,6 +414,12 @@ function linkColor(linkCode) {
    break;
  }
 }
+
+function expandAll() {
+  root.children.forEach(expand);
+  update(root);
+}
+
 });
 }
 
