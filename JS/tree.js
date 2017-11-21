@@ -2,8 +2,8 @@ function loadTree(){
   var codCargo = document.getElementById("cargo").value;
   var url;
 
-  if (codCargo == 6 || codCargo == 7) {   
-    url = "http://cepesp.io/api/consulta/tse?cargo=" + codCargo + "&agregacao_regional=1&agregacao_politica=1&anos%5B%5D=2014&anos%5B%5D=2010&anos%5B%5D=2006&anos%5B%5D=2002&anos%5B%5D=1998&uf_filter=&mun_filter=&brancos=1&nulos=1&columns[0][name]=UF&columns[0][search][value]=" + stateSelect;
+  if (codCargo == 6 || codCargo == 7) {
+    url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA&selected_columns[]=SIGLA_UE&columns[0][name]=SIGLA_UE&columns[0][search][value]=" + stateSelect;
   } else {
     url = "http://cepesp.io/api/consulta/candidatos?ano=2014&cargo=" + document.getElementById("cargo").value + "&selected_columns[]=ANO_ELEICAO&selected_columns[]=CODIGO_CARGO&selected_columns[]=NOME_URNA_CANDIDATO&selected_columns[]=SIGLA_PARTIDO&selected_columns[]=NUMERO_CANDIDATO&selected_columns[]=IDADE_DATA_ELEICAO&selected_columns[]=DESCRICAO_SEXO&selected_columns[]=DESCRICAO_GRAU_INSTRUCAO&selected_columns[]=DESPESA_MAX_CAMPANHA";
   }
