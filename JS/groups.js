@@ -18,6 +18,7 @@ function drag_drop(event) {
     droppedIn = true;
     loadMap();
     loadTree();
+    loadTable();
   }
 }
 

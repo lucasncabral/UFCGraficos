@@ -24,116 +24,117 @@ function loadTree(){
 
 
 
-  var i
-  for(i = 0; i < 4; i++) {
+    var i
+    for(i = 0; i < 4; i++) {
 
-    jsonData.children[i] = new Object();
-    jsonData.children[i].colorCode = "Group " + (i + 1);
-    jsonData.children[i].children = [];
-    jsonData.children[i].name = ["Grupo " + (i + 1)];
-    jsonData.children[i].key = "Grupo " + (i + 1);
-  }
-  jsonData.name = "assignment/ass1-anna-activities";
+      jsonData.children[i] = new Object();
+      jsonData.children[i].colorCode = "Group " + (i + 1);
+      jsonData.children[i].children = [];
+      jsonData.children[i].name = ["Grupo " + (i + 1)];
+      jsonData.children[i].key = "Grupo " + (i + 1);
+    }
+    jsonData.name = "assignment/ass1-anna-activities";
 
-  var count = 0;
-  group1.forEach(function(d){
-    jsonData.children[0].children[count] = new Object();
-    jsonData.children[0].children[count].colorCode = "Group 1";
-    jsonData.children[0].children[count].children = [];
-    jsonData.children[0].children[count].name = [d];
-    jsonData.children[0].children[count].key = d;
-    jsonData.children[0].children[count].size = 0;
-    count++;
-  });
+    var count = 0;
+    group1.forEach(function(d){
+      jsonData.children[0].children[count] = new Object();
+      jsonData.children[0].children[count].colorCode = "Group 1";
+      jsonData.children[0].children[count].children = [];
+      jsonData.children[0].children[count].name = [d];
+      jsonData.children[0].children[count].key = d;
+      jsonData.children[0].children[count].size = 0;
+      count++;
+    });
 
-  count = 0;
-  group2.forEach(function(d){
-    jsonData.children[1].children[count] = new Object();
-    jsonData.children[1].children[count].colorCode = "Group 2";
-    jsonData.children[1].children[count].children = [];
-    jsonData.children[1].children[count].name = [d];
-    jsonData.children[1].children[count].key = d;
-    jsonData.children[1].children[count].size = 0;
-    count++;
-  });
+    count = 0;
+    group2.forEach(function(d){
+      jsonData.children[1].children[count] = new Object();
+      jsonData.children[1].children[count].colorCode = "Group 2";
+      jsonData.children[1].children[count].children = [];
+      jsonData.children[1].children[count].name = [d];
+      jsonData.children[1].children[count].key = d;
+      jsonData.children[1].children[count].size = 0;
+      count++;
+    });
 
-  count = 0;
-  group3.forEach(function(d){
-    jsonData.children[2].children[count] = new Object();
-    jsonData.children[2].children[count].colorCode = "Group 3";
-    jsonData.children[2].children[count].children = [];
-    jsonData.children[2].children[count].name = [d];
-    jsonData.children[2].children[count].key = d;
-    jsonData.children[2].children[count].size = 0;
-    count++;
-  });
+    count = 0;
+    group3.forEach(function(d){
+      jsonData.children[2].children[count] = new Object();
+      jsonData.children[2].children[count].colorCode = "Group 3";
+      jsonData.children[2].children[count].children = [];
+      jsonData.children[2].children[count].name = [d];
+      jsonData.children[2].children[count].key = d;
+      jsonData.children[2].children[count].size = 0;
+      count++;
+    });
 
-  count = 0;
-  group4.forEach(function(d){
-    jsonData.children[3].children[count] = new Object();
-    jsonData.children[3].children[count].colorCode = "Group 4";
-    jsonData.children[3].children[count].children = [];
-    jsonData.children[3].children[count].name = [d];
-    jsonData.children[3].children[count].key = d;
-    jsonData.children[3].children[count].size = 0;
-    count++;
-  });
+    count = 0;
+    group4.forEach(function(d){
+      jsonData.children[3].children[count] = new Object();
+      jsonData.children[3].children[count].colorCode = "Group 4";
+      jsonData.children[3].children[count].children = [];
+      jsonData.children[3].children[count].name = [d];
+      jsonData.children[3].children[count].key = d;
+      jsonData.children[3].children[count].size = 0;
+      count++;
+    });
 
-  var countGroup1 = 0;
-  var countGroup2 = 0;
-  var countGroup3 = 0;
-  var countGroup4 = 0;
-  var names = [];
-  var candidatos = [];
+    var countGroup1 = 0;
+    var countGroup2 = 0;
+    var countGroup3 = 0;
+    var countGroup4 = 0;
+    var names = [];
+    var candidatos = [];
 
-  var maxAge = new Object();
-  maxAge.idade = 0;
-  var minAge = new Object();
-  minAge.idade = 100;
-  var countMale = 0;
-  var countWoman = 0;
-  var countSuperiorCompleto = 0;
-  var countSuperioIncompleto = 0;
-  var countEnsinoMedio = 0;
-  var countEnsinoMedioIncompleto = 0;
-  for(var i = 0; i < data.length;i++){
-    if(data[i].DESPESA_MAX_CAMPANHA >= 1 || data[i].CODIGO_CARGO > 1){
-      var element = data[i].SIGLA_PARTIDO;
-      var indexGroup;
-      var indexPartido;
+    var maxAge = new Object();
+    maxAge.idade = 0;
+    var minAge = new Object();
+    minAge.idade = 100;
+    var countMale = 0;
+    var countWoman = 0;
+    var countSuperiorCompleto = 0;
+    var countSuperioIncompleto = 0;
+    var countEnsinoMedio = 0;
+    var countEnsinoMedioIncompleto = 0;
+    for(var i = 0; i < data.length;i++){
+      if(data[i].DESPESA_MAX_CAMPANHA >= 1 || data[i].CODIGO_CARGO > 1){
+        var element = data[i].SIGLA_PARTIDO;
+        var indexGroup;
+        var indexPartido;
 
-      var partido = new Object();
-      if(group1.find(item => {return item === element})){
-        indexGroup = 0;
-        partido.colorCode = "Group 1";
-        indexPartido = group1.indexOf(element);
-        countGroup1++;
-      } else if (group2.find(item => {return item === element})){
-        indexGroup = 1;
-        partido.colorCode = "Group 2";
-        indexPartido = group2.indexOf(element);
-        countGroup2++;
-      } else if (group3.find(item => {return item === element})){
-        indexGroup = 2;
-        partido.colorCode = "Group 3";
-        indexPartido = group3.indexOf(element);
-        countGroup3++;
-      } else if (group4.find(item => {return item === element})){
-        indexGroup = 3;
-        partido.colorCode = "Group 4";
-        indexPartido = group4.indexOf(element);
-        countGroup4++;
-      }
+        var partido = new Object();
+        partido.siglaPartido = element;
+        if(group1.find(item => {return item === element})){
+          indexGroup = 0;
+          partido.colorCode = "Group 1";
+          indexPartido = group1.indexOf(element);
+          countGroup1++;
+        } else if (group2.find(item => {return item === element})){
+          indexGroup = 1;
+          partido.colorCode = "Group 2";
+          indexPartido = group2.indexOf(element);
+          countGroup2++;
+        } else if (group3.find(item => {return item === element})){
+          indexGroup = 2;
+          partido.colorCode = "Group 3";
+          indexPartido = group3.indexOf(element);
+          countGroup3++;
+        } else if (group4.find(item => {return item === element})){
+          indexGroup = 3;
+          partido.colorCode = "Group 4";
+          indexPartido = group4.indexOf(element);
+          countGroup4++;
+        }
 
-      if(indexPartido > 0 && names.indexOf(data[i].NOME_URNA_CANDIDATO) < 0){
-        names.push(data[i].NOME_URNA_CANDIDATO);
-        partido.name = [data[i].NOME_URNA_CANDIDATO],
-        partido.key = data[i].NOME_URNA_CANDIDATO;
-        partido.size = 1;
+        if(indexPartido > 0 && names.indexOf(data[i].NOME_URNA_CANDIDATO) < 0){
+          names.push(data[i].NOME_URNA_CANDIDATO);
+          partido.name = [data[i].NOME_URNA_CANDIDATO],
+          partido.key = data[i].NOME_URNA_CANDIDATO;
+          partido.size = 1;
 
-        jsonData.children[indexGroup].children[indexPartido].children.push(partido);
-        jsonData.children[indexGroup].children[indexPartido].size++;
-      }
+          jsonData.children[indexGroup].children[indexPartido].children.push(partido);
+          jsonData.children[indexGroup].children[indexPartido].size++;
+        }
 
       // TOOD AUMENTAR AQUI
       // SIGLA_UE,NUMERO_CANDIDATO,NOME_URNA_CANDIDATO,SIGLA_PARTIDO,IDADE_DATA_ELEICAO,DESCRICAO_SEXO,DESCRICAO_GRAU_INSTRUCAO
@@ -262,6 +263,8 @@ if(codCargo == 1)
   nodeEnter.append("text")
   .attr("x", function(d) { return d.children || d._children ? -15 : 15; })
   .attr("dy", ".35em")
+  .attr("class", "candidateName")
+  .attr("id", function(d) { return d.key; })
   .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
   .text(function(d) { return d.key; })
   .style("fill-opacity", 1e-6);
@@ -419,6 +422,31 @@ function expandAll() {
   root.children.forEach(expand);
   update(root);
 }
+
+function tooltipHtml(c){ /* function to create html content string in tooltip div. */
+  console.log(c);
+  return "<h4>"+c.name+"</h4><h4>" + c.numero +"</h4><br><table>"+
+      "<tr><td>Partido</td><td>"+c.siglaPartido+" </td></tr>"+
+      "<tr><td>Sexo</td><td>"+c.sexo+" </td></tr>"+
+      "<tr><td>Idade</td><td>"+c.idade+" </td></tr>"+
+      "<tr><td>Grau</td><td>"+c.grau+" </td></tr>"+
+      "</table>";
+}
+
+$(document).on('mouseover', 'text', function(e) {
+  if ($(e.target).attr('class') == "candidateName" && candidatos[e.target.id] != undefined){
+    console.log(e);
+    d3.select("#tooltipTree").transition().duration(500).style("opacity", .9);      
+
+    d3.select("#tooltipTree").html(tooltipHtml(candidatos[e.target.id]))  
+    .style("left",e.originalEvent.layerX + "px")     
+    .style("top", e.originalEvent.layerY + "px");
+  }
+});
+
+$(document).on('mouseout', 'text', function(e) {
+    d3.select("#tooltipTree").transition().duration(500).style("opacity", 0);     
+});
 
 });
 }
