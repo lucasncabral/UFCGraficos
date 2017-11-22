@@ -8,6 +8,7 @@
 
     var stateSelect = "";
     var reload = false;
+    var lastValueSelect = 1;
 
     var svg = d3.select("#mapContainer").append("svg")
     .attr("width", width)
@@ -38,6 +39,7 @@
     };
 
     var shp;
+    var modal;
 
     function ready(error, shps) {
       if (error) throw error;
@@ -45,6 +47,7 @@
       loadMap(shp);
       loadTable();
       loadTree();
+      loadModal();
     }
 
     function loadMap(){
@@ -225,9 +228,13 @@ function getColorMap(element){
 $( "#cargo" ).change(function() {
   if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
     if(stateSelect == ""){
-      alert('You need select a state before');
-      document.getElementById("cargo").value = 1;
+      modal.style.display = "block";
+      document.getElementById("cargo").value = lastValueSelect;
+      modal.style.display = "block";
+      return;
     }
+  } else {
+    lastValueSelect = document.getElementById("cargo").value;
   }
 
   reload = true;
@@ -235,5 +242,29 @@ $( "#cargo" ).change(function() {
   loadTree();
   loadTable();
 });
+
+function loadModal(){
+  modal = document.getElementById('dialogState');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+}
+
+
+
 
 d3.select(self.frameElement).style("height", height + "px");
