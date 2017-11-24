@@ -46,13 +46,13 @@ function loadTable(){
 				indexBirths = parseInt(data[i].ANO_ELEICAO) - 1998;
 				element = data[i].SIGLA_PARTIDO;
 
-				if(group1.find(item => {return item === element})){
+				if(groups.group1.find(item => {return item === element})){
 					indexGroup = 0;
-				} else if (group2.find(item => {return item === element})){
+				} else if (groups.group2.find(item => {return item === element})){
 					indexGroup = 1;
-				} else if (group3.find(item => {return item === element})){
+				} else if (groups.group3.find(item => {return item === element})){
 					indexGroup = 2;
-				} else if (group4.find(item => {return item === element})){
+				} else if (groups.group4.find(item => {return item === element})){
 					indexGroup = 3;
 				} else if (element == "#BRANCO#" || element == "#NULO#"){
 					indexGroup = 4;

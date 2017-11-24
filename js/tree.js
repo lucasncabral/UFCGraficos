@@ -36,7 +36,7 @@ function loadTree(){
     jsonData.name = "assignment/ass1-anna-activities";
 
     var count = 0;
-    group1.forEach(function(d){
+    groups.group1.forEach(function(d){
       jsonData.children[0].children[count] = new Object();
       jsonData.children[0].children[count].colorCode = "Group 1";
       jsonData.children[0].children[count].children = [];
@@ -47,7 +47,7 @@ function loadTree(){
     });
 
     count = 0;
-    group2.forEach(function(d){
+    groups.group2.forEach(function(d){
       jsonData.children[1].children[count] = new Object();
       jsonData.children[1].children[count].colorCode = "Group 2";
       jsonData.children[1].children[count].children = [];
@@ -58,7 +58,7 @@ function loadTree(){
     });
 
     count = 0;
-    group3.forEach(function(d){
+    groups.group3.forEach(function(d){
       jsonData.children[2].children[count] = new Object();
       jsonData.children[2].children[count].colorCode = "Group 3";
       jsonData.children[2].children[count].children = [];
@@ -69,7 +69,7 @@ function loadTree(){
     });
 
     count = 0;
-    group4.forEach(function(d){
+    groups.group4.forEach(function(d){
       jsonData.children[3].children[count] = new Object();
       jsonData.children[3].children[count].colorCode = "Group 4";
       jsonData.children[3].children[count].children = [];
@@ -104,25 +104,25 @@ function loadTree(){
 
         var partido = new Object();
         partido.siglaPartido = element;
-        if(group1.find(item => {return item === element})){
+        if(groups.group1.find(item => {return item === element})){
           indexGroup = 0;
           partido.colorCode = "Group 1";
-          indexPartido = group1.indexOf(element);
+          indexPartido = groups.group1.indexOf(element);
           countGroup1++;
-        } else if (group2.find(item => {return item === element})){
+        } else if (groups.group2.find(item => {return item === element})){
           indexGroup = 1;
           partido.colorCode = "Group 2";
-          indexPartido = group2.indexOf(element);
+          indexPartido = groups.group2.indexOf(element);
           countGroup2++;
-        } else if (group3.find(item => {return item === element})){
+        } else if (groups.group3.find(item => {return item === element})){
           indexGroup = 2;
           partido.colorCode = "Group 3";
-          indexPartido = group3.indexOf(element);
+          indexPartido = groups.group3.indexOf(element);
           countGroup3++;
-        } else if (group4.find(item => {return item === element})){
+        } else if (groups.group4.find(item => {return item === element})){
           indexGroup = 3;
           partido.colorCode = "Group 4";
-          indexPartido = group4.indexOf(element);
+          indexPartido = groups.group4.indexOf(element);
           countGroup4++;
         }
 
