@@ -23,11 +23,11 @@ function loadTable(){
 		var i
 		for(i = 0; i < 4; i++) {
 			myJson[i] = new Object();
-			myJson[i].forename = "Grupo " + (i + 1);
+			myJson[i].forename = groups[i].name;
 			myJson[i].sex = "m";
 			myJson[i].births = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-			myJson[i].forenameUnique = "Grupo " + (i + 1);
-			myJson[i].id = "Grupo " + (i + 1);
+			myJson[i].forenameUnique = groups[i].name;
+			myJson[i].id = groups[i].name;
 		}
 
 		myJson[4] = new Object();
@@ -46,13 +46,13 @@ function loadTable(){
 				indexBirths = parseInt(data[i].ANO_ELEICAO) - 1998;
 				element = data[i].SIGLA_PARTIDO;
 
-				if(groups.group1.find(item => {return item === element})){
+				if(groups[1 - 1].parties.find(item => {return item === element})){
 					indexGroup = 0;
-				} else if (groups.group2.find(item => {return item === element})){
+				} else if (groups[2 - 1].parties.find(item => {return item === element})){
 					indexGroup = 1;
-				} else if (groups.group3.find(item => {return item === element})){
+				} else if (groups[3 - 1].parties.find(item => {return item === element})){
 					indexGroup = 2;
-				} else if (groups.group4.find(item => {return item === element})){
+				} else if (groups[4 - 1].parties.find(item => {return item === element})){
 					indexGroup = 3;
 				} else if (element == "#BRANCO#" || element == "#NULO#"){
 					indexGroup = 4;

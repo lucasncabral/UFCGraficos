@@ -14,7 +14,7 @@ function drag_drop(event) {
     changeGroup($("#" + elem_id).text(), event.target.getAttribute('id'));
 
     $("#" + elem_id).appendTo("#" + event.target.getAttribute('id'));
-    console.log(groups.group1);
+    console.log(groups[1 - 1].parties);
     droppedIn = true;
     loadMap();
     loadTree();
@@ -24,32 +24,32 @@ function drag_drop(event) {
 
 function changeGroup(element, group){
   console.log(element);
-  if(groups.group1.find(item => {return item === element})){
-    var index = groups.group1.indexOf(element);
-    groups.group1.splice(index, 1);
-  } else if (groups.group2.find(item => {return item === element})){
-    var index = groups.group2.indexOf(element);
-    groups.group2.splice(index, 1);
-  } else if (groups.group3.find(item => {return item === element})){
-    var index = groups.group3.indexOf(element);
-    groups.group3.splice(index, 1);
+  if(groups[1 - 1].parties.find(item => {return item === element})){
+    var index = groups[1 - 1].parties.indexOf(element);
+    groups[1 - 1].parties.splice(index, 1);
+  } else if (groups[2 - 1].parties.find(item => {return item === element})){
+    var index = groups[2 - 1].parties.indexOf(element);
+    groups[2 - 1].parties.splice(index, 1);
+  } else if (groups[3 - 1].parties.find(item => {return item === element})){
+    var index = groups[3 - 1].parties.indexOf(element);
+    groups[3 - 1].parties.splice(index, 1);
   } else {
-    var index = groups.group4.indexOf(element);
-    groups.group4.splice(index, 1);
+    var index = groups[4 - 1].parties.indexOf(element);
+    groups[4 - 1].parties.splice(index, 1);
   }
 
   switch(group){
     case "drop_zone1":
-    groups.group1.push(element);
+    groups[1 - 1].parties.push(element);
     break;
     case "drop_zone2":
-    groups.group2.push(element);
+    groups[2 - 1].parties.push(element);
     break;
     case "drop_zone3":
-    groups.group3.push(element);
+    groups[3 - 1].parties.push(element);
     break;
     case "drop_zone4":
-    groups.group4.push(element);
+    groups[4 - 1].parties.push(element);
     break;
   }
 }
@@ -68,9 +68,9 @@ $(document).ready(function(){
 
   divGroups.append('<div id="drop_zone1" class="drop_zone" class="col-sm-3" style= "border: #ffcc0082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group1Div = $('#drop_zone1');
-  group1Div.append('<p style="margin: 0px">Grupo 1</p>')
+  group1Div.append('<p style="margin: 0px">' + groups[1 - 1].name + '</p>')
   var count = 0;
-  groups.group1.forEach(function(d){
+  groups[1 - 1].parties.forEach(function(d){
     group1Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
     count++;
   });
@@ -78,24 +78,24 @@ $(document).ready(function(){
 
   divGroups.append('<div id="drop_zone2" class="drop_zone" class="col-sm-3" style= "border: #da120882 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group2Div = $('#drop_zone2');
-  group2Div.append('<p style="margin: 0px">Grupo 2</p>')
-  groups.group2.forEach(function(d){
+  group2Div.append('<p style="margin: 0px">' + groups[2 - 1].name + '</p>')
+  groups[2 - 1].parties.forEach(function(d){
     group2Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
     count++;
   });
 
   divGroups.append('<div id="drop_zone3" class="drop_zone" class="col-sm-3" style= "border: #00660082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group3Div = $('#drop_zone3');
-  group3Div.append('<p style="margin: 0px">Grupo 3</p>')
-  groups.group3.forEach(function(d){
+  group3Div.append('<p style="margin: 0px">' + groups[3 - 1].name + '</p>')
+  groups[3 - 1].parties.forEach(function(d){
     group3Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
     count++;
   });
 
   divGroups.append('<div id="drop_zone4" class="drop_zone" class="col-sm-3" style= "border: #1e90ff7d 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group4Div = $('#drop_zone4');
-  group4Div.append('<p style="margin: 0px">Grupo 4</p>');
-  groups.group4.forEach(function(d){
+  group4Div.append('<p style="margin: 0px">' + groups[4 - 1].name + '</p>');
+  groups[4 - 1].parties.forEach(function(d){
     group4Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
     count++;
   });

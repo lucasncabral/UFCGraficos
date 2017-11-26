@@ -9,12 +9,20 @@ function GetURLParameter(sParam) {
     }
 }
 
-var groups = {
-    group1: ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"],
-    group2: ["PC do B", "PROS", "PT", "REDE", "PSOL", "PRTB"],
-    group3: ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"],
-    group4: ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD", "PSDC", "SD", "PHS", "PODE", "PSC", "PSDB", "PRP", "PMB"]
-};
+var groups =
+    [{
+        parties: ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"],
+        name: "Grupo 1"
+    }, {
+        parties: ["PC do B", "PROS", "PT", "REDE", "PSOL", "PRTB"],
+        name: "Grupo 2"
+    }, {
+        parties: ["PEN", "PPS", "PV", "PSL", "PMN", "PTC", "PPL", "PCO"],
+        name: "Grupo 3"
+    }, {
+        parties: ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD", "PSDC", "SD", "PHS", "PODE", "PSC", "PSDB", "PRP", "PMB"],
+        name: "Grupo 4"
+    }];
 
 function serializeGroups(group_object) {
     return Base64.encodeURI(JSON.stringify(group_object));

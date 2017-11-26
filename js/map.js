@@ -211,11 +211,11 @@ function zoomed() {
 function getColorMap(element){
   var color = "";
 
-  if(groups.group1.find(item => {return item === element})){
+  if(groups[1 - 1].parties.find(item => {return item === element})){
     color = "FC0";
-  } else if (groups.group2.find(item => {return item === element})){
+  } else if (groups[2 - 1].parties.find(item => {return item === element})){
     color = "#DA1208";
-  } else if (groups.group3.find(item => {return item === element})){
+  } else if (groups[3 - 1].parties.find(item => {return item === element})){
     color = "#006600" ;
   } else {
     color = "#1e90ff";

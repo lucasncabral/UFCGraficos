@@ -30,13 +30,13 @@ function loadTree(){
       jsonData.children[i] = new Object();
       jsonData.children[i].colorCode = "Group " + (i + 1);
       jsonData.children[i].children = [];
-      jsonData.children[i].name = ["Grupo " + (i + 1)];
-      jsonData.children[i].key = "Grupo " + (i + 1);
+      jsonData.children[i].name = [groups[i].name];
+      jsonData.children[i].key = groups[i].name;
     }
     jsonData.name = "assignment/ass1-anna-activities";
 
     var count = 0;
-    groups.group1.forEach(function(d){
+    groups[1 - 1].parties.forEach(function(d){
       jsonData.children[0].children[count] = new Object();
       jsonData.children[0].children[count].colorCode = "Group 1";
       jsonData.children[0].children[count].children = [];
@@ -47,7 +47,7 @@ function loadTree(){
     });
 
     count = 0;
-    groups.group2.forEach(function(d){
+    groups[2 - 1].parties.forEach(function(d){
       jsonData.children[1].children[count] = new Object();
       jsonData.children[1].children[count].colorCode = "Group 2";
       jsonData.children[1].children[count].children = [];
@@ -58,7 +58,7 @@ function loadTree(){
     });
 
     count = 0;
-    groups.group3.forEach(function(d){
+    groups[3 - 1].parties.forEach(function(d){
       jsonData.children[2].children[count] = new Object();
       jsonData.children[2].children[count].colorCode = "Group 3";
       jsonData.children[2].children[count].children = [];
@@ -69,7 +69,7 @@ function loadTree(){
     });
 
     count = 0;
-    groups.group4.forEach(function(d){
+    groups[4 - 1].parties.forEach(function(d){
       jsonData.children[3].children[count] = new Object();
       jsonData.children[3].children[count].colorCode = "Group 4";
       jsonData.children[3].children[count].children = [];
@@ -104,25 +104,25 @@ function loadTree(){
 
         var partido = new Object();
         partido.siglaPartido = element;
-        if(groups.group1.find(item => {return item === element})){
+        if(groups[1 - 1].parties.find(item => {return item === element})){
           indexGroup = 0;
           partido.colorCode = "Group 1";
-          indexPartido = groups.group1.indexOf(element);
+          indexPartido = groups[1 - 1].parties.indexOf(element);
           countGroup1++;
-        } else if (groups.group2.find(item => {return item === element})){
+        } else if (groups[2 - 1].parties.find(item => {return item === element})){
           indexGroup = 1;
           partido.colorCode = "Group 2";
-          indexPartido = groups.group2.indexOf(element);
+          indexPartido = groups[2 - 1].parties.indexOf(element);
           countGroup2++;
-        } else if (groups.group3.find(item => {return item === element})){
+        } else if (groups[3 - 1].parties.find(item => {return item === element})){
           indexGroup = 2;
           partido.colorCode = "Group 3";
-          indexPartido = groups.group3.indexOf(element);
+          indexPartido = groups[3 - 1].parties.indexOf(element);
           countGroup3++;
-        } else if (groups.group4.find(item => {return item === element})){
+        } else if (groups[4 - 1].parties.find(item => {return item === element})){
           indexGroup = 3;
           partido.colorCode = "Group 4";
-          indexPartido = groups.group4.indexOf(element);
+          indexPartido = groups[4 - 1].parties.indexOf(element);
           countGroup4++;
         }
 
