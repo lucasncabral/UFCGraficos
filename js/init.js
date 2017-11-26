@@ -24,7 +24,7 @@ function deserializeGroups(group_base64) {
     return Base64.decode(group_base64);
 }
 
-if (GetURLParameter("group_config") !== null) {
+if (typeof GetURLParameter("group_config") !== 'undefined') {
     groups = JSON.parse(
         deserializeGroups(
             GetURLParameter("group_config")
