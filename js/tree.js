@@ -11,7 +11,7 @@ function loadTree(){
   console.log(url);
 
   $.ajax({
-    url : url,
+    url : "https://cors-anywhere.herokuapp.com/" + url,
     type : 'get',
     beforeSend : function(){
     }

@@ -11,7 +11,7 @@ function loadTable(){
 
   console.log(urlTable);
 	$.ajax({
-		url : urlTable,
+		url : 'https://cors-anywhere.herokuapp.com/' + urlTable,
 		type : 'get',
 		beforeSend : function(){
 		}
