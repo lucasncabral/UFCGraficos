@@ -23,8 +23,51 @@ function loadModal(modal_name) {
     }
 }
 
-var groups =
-    [{
+function checkNames(name, group_index) {
+    for (i = 0; i < groups.length; i++) {
+        if (i === group_index) continue;
+
+        if (groups[i].name === name) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+$(document).ready(function () {
+    var groupIndex, modal, input_rename;
+
+    $('#renameModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        groupIndex = button.data('group-index');
+        modal = $(this);
+        input_rename = modal.find('.modal-body input');
+        input_rename.val(groups[groupIndex].name);
+    });
+
+    $('#renameModal .modal-footer button').on('click', function (event) {
+        console.log("grupo " + groupIndex);
+        var group_title_id = "#group_" + groupIndex + "_name";
+
+        if (!checkNames(input_rename.val(), groupIndex)) {
+            alert("O nome '" + input_rename.val() + "' já está sendo utilizado! Escolha outro nome.");
+            return;
+        }
+
+        groups[groupIndex].name = input_rename.val();
+        $(group_title_id).text(groups[groupIndex].name);
+
+        loadMap();
+        loadTree();
+        loadTable();
+
+        modal.modal('toggle');
+    });
+});
+
+var groups = [
+    {
         parties: ["PDT", "PT do B", "PSB", "AVANTE", "PSTU", "PCB", "NOVO"],
         name: "Grupo 1"
     }, {
@@ -36,7 +79,8 @@ var groups =
     }, {
         parties: ["PR", "PRB", "PMDB", "PTB", "PP", "DEM", "PSD", "PSDC", "SD", "PHS", "PODE", "PSC", "PSDB", "PRP", "PMB"],
         name: "Grupo 4"
-    }];
+    }
+];
 
 function serializeGroups(group_object) {
     return Base64.encodeURI(JSON.stringify(group_object));
