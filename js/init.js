@@ -1,3 +1,5 @@
+var base_url = "http://www.ffosilva.net/UFCGraficos/";
+
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
@@ -36,7 +38,13 @@ function checkNames(name, group_index) {
 }
 
 $(document).ready(function () {
-    var groupIndex, modal, input_rename;
+    var groupIndex, modal, shareModal, input_rename, input_link;
+
+    $('#shareModal').on('show.bs.modal', function (event) {
+        shareModal = $(this);
+        // input_link = shareModal.find('.modal-body input');
+        // input_link.val(base_url);
+    });
 
     $('#renameModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -65,6 +73,33 @@ $(document).ready(function () {
         modal.modal('toggle');
     });
 });
+
+function copyLink() {
+    var copyText = document.getElementById("link-address");
+    copyText.select();
+    document.execCommand("Copy");
+    alert("Link copiado com sucesso!");
+}
+
+function shortenURL() {
+    var url = base_url + "?group_config=" + serializeGroups(groups);
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCiebwIsAg21OXd5PaWbDUU0KQmyZGay7c",
+        data: JSON.stringify(
+            {
+                "longUrl": url
+            }
+        ),
+        dataType: "json",
+        success: function (data) {
+            $('#link-address').val(data.id);
+            $('#shareModal').modal('show');
+        }
+    });
+}
 
 var groups = [
     {

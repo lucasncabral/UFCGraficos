@@ -40,7 +40,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Renomear grupo</h4>
+                <h4 class="modal-title" id="renameModalLabel">Renomear grupo</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -52,6 +52,27 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Renomear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-link" onclick="shortenURL()"><span class="glyphicon glyphicon-share"></span></button>
+<div class="modal fade " id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel">
+    <div class="modal-dialog" role="document" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="shareModalLabel">Compartilhar grupos</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="link-address" class="control-label">Link:</label>
+                        <input type="text" class="form-control" id="link-address" />
+                        <button type="button" class="btn btn-link" onclick="copyLink()"><span class="glyphicon glyphicon-copy"></span> Copiar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
