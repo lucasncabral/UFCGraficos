@@ -1,6 +1,6 @@
     function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
-      return "<h4>"+n+"</h4>"+
-      "" + (d.max);
+      return "<h4>"+n+"</h4>";
+      // +"Partido Vencedor: " + (d.max);
     }
 
     var width = 600,
@@ -61,7 +61,7 @@
       "RJ", "RN", "RO", "RR", "RS", "SC",
       "SE", "SP", "TO", "ZZ"]
       .forEach(function(d){
-        sampleData[d]={low:0, high:0, avg:0, color:null, max:"", partido:Array()}; 
+        sampleData[d]={low:0, high:0, avg:0, color:null, max:"", partido:Array(), groupsCount:Array()}; 
       });
 
       var cargoAPI = document.getElementById("cargo").value;
@@ -119,7 +119,7 @@
         var listStates = g.selectAll(".state");
 
         listStates.each(function(d, i) {
-          color = getColorMap(sampleData[d.id].max);
+          color = getColorMap(sampleData[d.id].partido);
           sampleData[d.id].color = color;
           sampleData[d.id].low = parseFloat(d.properties.volume) ;
           sampleData[d.id].high =  parseFloat(d.properties.capacity);
@@ -208,19 +208,43 @@ function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 
-function getColorMap(element){
+
+function getColorMap(partidos){
   var color = "";
+  var groupsCountVotes = [{nome:"Group1", qntd:0},{nome:"Group2", qntd:0},{nome:"Group3", qntd:0},{nome:"Group4", qntd:0}];
 
-  if(groups[1 - 1].parties.find(item => {return item === element})){
+  partidos.forEach(function(d){
+    var element = d.sigla;
+    if(groups[1 - 1].parties.find(item => {return item === element})){
+      groupsCountVotes[0].qntd += parseInt(d.qntd);
+    } else if (groups[2 - 1].parties.find(item => {return item === element})){
+      groupsCountVotes[1].qntd += parseInt(d.qntd);
+    } else if (groups[3 - 1].parties.find(item => {return item === element})){
+      groupsCountVotes[2].qntd += parseInt(d.qntd);
+    } else {
+      groupsCountVotes[3].qntd += parseInt(d.qntd);
+    }});
+  groupsCountVotes = groupsCountVotes.sort(sortNumber);
+  
+  console.log(groupsCountVotes);
+
+  switch(groupsCountVotes[0].nome){
+    case "Group1":
     color = "FC0";
-  } else if (groups[2 - 1].parties.find(item => {return item === element})){
+    break;
+    case "Group2":
     color = "#DA1208";
-  } else if (groups[3 - 1].parties.find(item => {return item === element})){
+    break;
+    case "Group3":
     color = "#006600" ;
-  } else {
+    break;
+    case "Group4":
     color = "#1e90ff";
+    break;
+    default:
+    color = "#1e90ff";
+    break;
   }
-
 
   return color;
 }
