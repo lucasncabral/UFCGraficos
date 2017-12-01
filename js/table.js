@@ -75,10 +75,7 @@ function loadTable(){
 			}
 		}
 		loadTableValues(myJson);
-	});	
-
-
-
+	});
 }
 
 function loadTableValues(dataValues){
@@ -606,7 +603,25 @@ u.json("brazil.json",function(e,r){
 									watch:{forenames:"updateLines"},
 
 									mounted:function(){var t=this;this.svg=a.select(this.$refs.svg),
-										this.$el.addEventListener("mouseenter",function(n){t.popup.show=t.forenames.length>0,t.svg.selectAll(".circles > g").attr("visibility","")},!0),this.$el.addEventListener("mouseleave",function(n){t.popup.show=!1,t.svg.selectAll(".circles > g").attr("visibility","hidden")},!0),this.$el.addEventListener("mousemove",function(n){if(t.popup.show){var e=n.clientX-t.$refs.svg.getBoundingClientRect().left;t.popup.position=e<t.$el.offsetWidth/2?"right":null,t.currentYear=Math.round(t.xScale.invert(e)),t.svg.selectAll(".circles > g").attr("visibility",function(n){return n.year===t.currentYear?"":"hidden"})}},!0),window.onresize=this.onresize.bind(this),this.onresize()},methods:{yearClick:function(t){this.zoomed&&this.range.from===t.from?(this.range=c.initialRange,this.zoomed=!1):(this.range={from:t.from,to:t.to+1},this.zoomed=!0),this.updateAxis(),console.log("update axis",this.range.from,this.range.to),this.svg.select(".x-axis").transition().duration(c.defaultDuration).call(this.xAxis),this.svg.selectAll(".prenoms .lines g").transition().duration(c.defaultDuration).call(this.redrawExistingLines),
+										this.$el.addEventListener("mouseenter",function(n){t.popup.show=t.forenames.length>0,t.svg.selectAll(".circles > g").attr("visibility","")},!0),this.$el.addEventListener("mouseleave",function(n){t.popup.show=!1,t.svg.selectAll(".circles > g").attr("visibility","hidden")},!0),this.$el.addEventListener("mousemove",function(n){if(t.popup.show){var e=n.clientX-t.$refs.svg.getBoundingClientRect().left;t.popup.position=e<t.$el.offsetWidth/2?"right":null,t.currentYear=Math.round(t.xScale.invert(e)),t.svg.selectAll(".circles > g").attr("visibility",function(n){return n.year===t.currentYear?"":"hidden"})}},!0),window.onresize=this.onresize.bind(this),this.onresize();
+
+										var add_label_svg = d3.select("#app").select("svg");
+                                        add_label_svg.append("text").attr("x", 650 )
+                                            .attr("y",  360 )
+                                            .attr("dy", "0.32em")
+                                            .style("text-anchor", "right")
+											.attr("fill", "#4c92b9")
+                                            .text("Ano");
+
+                                        add_label_svg.append("text")
+											.attr("x", 85 )
+                                            .attr("y",  35 )
+                                            .attr("dy", "0.32em")
+                                            .style("text-anchor", "left")
+                                            .attr("fill", "#4c92b9")
+                                            .text("# Votos");
+
+									},methods:{yearClick:function(t){this.zoomed&&this.range.from===t.from?(this.range=c.initialRange,this.zoomed=!1):(this.range={from:t.from,to:t.to+1},this.zoomed=!0),this.updateAxis(),console.log("update axis",this.range.from,this.range.to),this.svg.select(".x-axis").transition().duration(c.defaultDuration).call(this.xAxis),this.svg.selectAll(".prenoms .lines g").transition().duration(c.defaultDuration).call(this.redrawExistingLines),
 										a.select(this.$refs.labels).selectAll("* > div").transition().duration(c.defaultDuration).
 										call(this.placeLabel.bind(this)),this.svg.selectAll(".circles g").transition().
 										duration(c.defaultDuration).attr("transform",this.transformForCircle),
@@ -617,7 +632,7 @@ u.json("brazil.json",function(e,r){
 												var i=(0,s.default)(t.births).filter(function(t){
 													var e=t.year;return e>=n.range.from&&e<=n.range.to-1})
 												.last("births"),o=i.year,a=i.births,u=n.yScale(a);
-//TODO AQUI
+
 e[r]={left:n.xScale(o),top:u}}),
 											t.style("left",function(t,n){return e[n].left + (5) +"px"})
 											.style("top",function(t,n){return e[n].top + (30) + "px"}).style("background-color",c.forenameColor)},onresize:function(){console.log("resize");
