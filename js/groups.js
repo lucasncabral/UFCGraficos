@@ -66,37 +66,37 @@ function drag_end(event) {
 $(document).ready(function(){
   var divGroups = $("#groups");
 
-  divGroups.append('<div id="drop_zone1" class="drop_zone" class="col-sm-3" style= "border: #ffcc0082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div class="col-sm-6 col-lg-3"><div id="drop_zone1" class="drop_zone" style= "border: #ffcc0082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group1Div = $('#drop_zone1');
   group1Div.append('<p style="margin: 0px"><span id="group_0_name">' + groups[1 - 1].name + '</span> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#renameModal" data-group-index="0"><span class="glyphicon glyphicon-pencil"></span></button></p>');
   var count = 0;
   groups[1 - 1].parties.forEach(function(d){
-    group1Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
+    group1Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div></div>');
     count++;
   });
 
 
-  divGroups.append('<div id="drop_zone2" class="drop_zone" class="col-sm-3" style= "border: #da120882 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div class="col-sm-6 col-lg-3"><div id="drop_zone2" class="drop_zone" style= "border: #da120882 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group2Div = $('#drop_zone2');
   group2Div.append('<p style="margin: 0px"><span id="group_1_name">' + groups[2 - 1].name + '</span> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#renameModal" data-group-index="1"><span class="glyphicon glyphicon-pencil"></span></button></p>');
   groups[2 - 1].parties.forEach(function(d){
-    group2Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
+    group2Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div></div>');
     count++;
   });
 
-  divGroups.append('<div id="drop_zone3" class="drop_zone" class="col-sm-3" style= "border: #00660082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div class="col-sm-6 col-lg-3"><div id="drop_zone3" class="drop_zone" style= "border: #00660082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group3Div = $('#drop_zone3');
   group3Div.append('<p style="margin: 0px"><span id="group_2_name">' + groups[3 - 1].name + '</span> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#renameModal" data-group-index="2"><span class="glyphicon glyphicon-pencil"></span></button></p>');
   groups[3 - 1].parties.forEach(function(d){
-    group3Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
+    group3Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div></div>');
     count++;
   });
 
-  divGroups.append('<div id="drop_zone4" class="drop_zone" class="col-sm-3" style= "border: #1e90ff7d 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
+  divGroups.append('<div class="col-sm-6 col-lg-3"><div id="drop_zone4" class="drop_zone" style= "border: #1e90ff7d 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group4Div = $('#drop_zone4');
   group4Div.append('<p style="margin: 0px"><span id="group_3_name">' + groups[4 - 1].name + '</span> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#renameModal" data-group-index="3"><span class="glyphicon glyphicon-pencil"></span></button></p>');
   groups[4 - 1].parties.forEach(function(d){
-    group4Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div>')
+    group4Div.append('<div id="object' + count + '" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)" style="float: left">' + d + '</div></div>');
     count++;
   });
 });

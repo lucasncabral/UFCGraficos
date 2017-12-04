@@ -3,7 +3,7 @@
       // +"Partido Vencedor: " + (d.max);
     }
 
-    var width = 600,
+    var width = 500,
     height = 600, centered;
 
     var stateSelect = "";
@@ -47,7 +47,6 @@
       loadMap(shp);
       loadTable();
       loadTree();
-      loadModal('dialogState');
     }
 
     function loadMap(){
@@ -225,8 +224,6 @@ function getColorMap(partidos){
       groupsCountVotes[3].qntd += parseInt(d.qntd);
     }});
   groupsCountVotes = groupsCountVotes.sort(sortNumber);
-  
-  console.log(groupsCountVotes);
 
   switch(groupsCountVotes[0].nome){
     case "Group1":
@@ -250,11 +247,12 @@ function getColorMap(partidos){
 }
 
 $( "#cargo" ).change(function() {
-  if(document.getElementById("cargo").value == 6 || document.getElementById("cargo").value == 7){
-    if(stateSelect == ""){
-      modal.style.display = "block";
+  console.log(document.getElementById("cargo").value);
+    console.log("State is " + stateSelect);
+  if(document.getElementById("cargo").value === "6" || document.getElementById("cargo").value === "7"){
+    if(stateSelect === "") {
       document.getElementById("cargo").value = lastValueSelect;
-      modal.style.display = "block";
+      loadModal('dialogState');
       return;
     }
   } else {

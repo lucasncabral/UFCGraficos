@@ -14,21 +14,69 @@
     <link href="css/table.css" rel="stylesheet">
 </head>
 <body>
-
-<div id="dialogState" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>É necessário selecionar um estado no mapa!</p>
+<div class="container">
+    <button type="button" class="btn btn-link" onclick="shortenURL()"><span class="glyphicon glyphicon-share"></span>
+    </button>
+    <div class="row" id="groups"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div align="center" style="margin-top: 5px">
+                <p>
+                    <b>Cargo: </b>
+                    <select id="cargo">
+                        <option value="1">Presidente</option>
+                        <option value="3">Governador</option>
+                        <option value="5">Senador</option>
+                        <option value="6">Deputado Federal</option>
+                        <option value="7">Deputado Estadual</option>
+                    </select>
+                </p>
+            </div>
+        </div>
     </div>
-
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="mapContainer">
+                <div id="tooltip"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div id="app">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div id="label1">
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div id="tree" align="center"></div>
+            <div id="tooltipTree"></div>
+        </div>
+    </div>
 </div>
 
-<div class="modal fade " id="renameModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel">
+<div class="modal fade" id="dialogState" tabindex="-1" role="dialog" aria-labelledby="dialogStateLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="dialogStateLabel">Erro!</h4>
+            </div>
+            <div class="modal-body">
+                <p>É necessário selecionar um estado no mapa!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="renameModalLabel">Renomear grupo</h4>
             </div>
             <div class="modal-body">
@@ -45,21 +93,22 @@
         </div>
     </div>
 </div>
-
-<button type="button" class="btn btn-link" onclick="shortenURL()"><span class="glyphicon glyphicon-share"></span></button>
 <div class="modal fade " id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel">
     <div class="modal-dialog" role="document" style="width: 50%">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="shareModalLabel">Compartilhar grupos</h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
                         <label for="link-address" class="control-label">Link:</label>
-                        <input type="text" class="form-control" id="link-address" />
-                        <button type="button" class="btn btn-link" onclick="copyLink()"><span class="glyphicon glyphicon-copy"></span> Copiar</button>
+                        <input type="text" class="form-control" id="link-address"/>
+                        <button type="button" class="btn btn-link" onclick="copyLink()"><span
+                                class="glyphicon glyphicon-copy"></span> Copiar
+                        </button>
                     </div>
                 </form>
             </div>
@@ -67,51 +116,14 @@
     </div>
 </div>
 
-<div class="row" style="margin:20px" id="groups">
-</div>
-
-<div id="all">
-
-    <div align="center" style="margin-top: 5px">
-
-        <p>
-            <b>Cargo: </b>
-            <select id="cargo">
-                <option value="1">Presidente</option>
-                <option value="3">Governador</option>
-                <option value="5">Senador</option>
-                <option value="6">Deputado Federal</option>
-                <option value="7">Deputado Estadual</option>
-            </select>
-        </p>
-    </div>
-
-    <div id="mapContainer">
-        <div id="tooltip"></div>
-    </div>
-
-    <div id="app">
-
-    </div>
-
-    <div>
-        <div id="label1">
-
-        </div>
-        <div id="tree" align="center">
-            <div id="tooltipTree"></div>
-        </div>
-    </div>
-
-</div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/base64.min.js"></script>
-<script src="js/init.js"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/d3-queue.v2.min.js"></script>
 <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+<script src="js/base64.min.js"></script>
+<script src="js/init.js"></script>
 <script src="js/groups.js"></script>
 <script src="js/tree.js"></script>
 <script src="js/table.js"></script>

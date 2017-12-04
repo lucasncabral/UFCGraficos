@@ -1,10 +1,10 @@
-  .objects {
-    display:inline-block;
+.objects {
+    display: inline-block;
     border: black 1px solid;
-    min-width: 50px; 
+    min-width: 50px;
     height: 19px;
     margin: 5px;
-    margin-left:7px; 
+    margin-left: 7px;
     padding-right: 5px;
     color: black;
     padding-left: 5px;
@@ -13,18 +13,16 @@
     text-align: center;
     box-shadow: 2px 2px 2px #999;
     cursor: move;
-  }
+}
 
-
-  .drop_zone {
-    background-color: rgba(255, 255, 255 ,0.5);
-    width: 300px; 
+.drop_zone {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
     height: 200px;
     padding: 8px;
+    margin: 8px;
     font-size: 18px;
     border-radius: 15px;
     color: black;
-    margin-left: 50px;
-    margin-top: 10px;
     float: left;
-  }
+}
