@@ -64,7 +64,7 @@ function drag_end(event) {
 
 
 $(document).ready(function(){
-  var divGroups = $('.row');
+  var divGroups = $("#groups");
 
   divGroups.append('<div id="drop_zone1" class="drop_zone" class="col-sm-3" style= "border: #ffcc0082 3px solid" ondrop="drag_drop(event)" ondragover="return false" >');
   var group1Div = $('#drop_zone1');

@@ -12,7 +12,7 @@ function GetURLParameter(sParam) {
 }
 
 function loadModal(modal_name) {
-    modal = document.getElementById(modal_name);
+    var modal = document.getElementById(modal_name);
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function () {
         modal.style.display = "none";
