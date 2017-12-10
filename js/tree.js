@@ -13,6 +13,7 @@ function loadTree(){
   $.ajax({
     url : "https://cors-anywhere.herokuapp.com/" + url,
     type : 'get',
+    headers: {'X-Requested-With': 'XMLHttpRequest'},
     beforeSend : function(){
     }
   }).done(function(result){
