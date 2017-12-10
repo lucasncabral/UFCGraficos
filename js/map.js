@@ -74,7 +74,9 @@
       $.ajax({
         url : "https://cors-anywhere.herokuapp.com/" + "http://cepesp.io/api/consulta/tse?cargo=" + cargoAPI + "&ano=" + ano + "&agregacao_regional=UF.csv",
         type : 'get',
-        beforeSend : function(){
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+
+          beforeSend : function(){
         }
       })
 
