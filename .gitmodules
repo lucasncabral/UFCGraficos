@@ -1,3 +1,0 @@
-[submodule "php-cross-domain-proxy"]
-	path = php-cross-domain-proxy
-	url = git@github.com:softius/php-cross-domain-proxy.git
