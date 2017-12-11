@@ -74,7 +74,7 @@
       $.ajax({
         url : "https://cors-anywhere.herokuapp.com/" + "http://cepesp.io/api/consulta/tse?cargo=" + cargoAPI + "&ano=" + ano + "&agregacao_regional=UF.csv",
         type : 'get',
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        crossDomain: true,
 
           beforeSend : function(){
         }
@@ -192,10 +192,9 @@
 
       function mouseOver(d){
         d3.select("#tooltip").transition().duration(500).style("opacity", .9);      
-
-        d3.select("#tooltip").html(tooltipHtml(d.properties.nome, sampleData[d.id]))  
-        .style("left", (d3.event.pageX) + "px")     
-        .style("top", (d3.event.pageY - 28) + "px");
+        d3.select("#tooltip").html(tooltipHtml(d.properties.nome, sampleData[d.id]))
+        .style("left", (d3.mouse(this)[0]) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px");
       }
 
       function mouseOut(){

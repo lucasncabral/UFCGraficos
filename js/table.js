@@ -13,8 +13,8 @@ function loadTable(){
 	$.ajax({
 		url : 'https://cors-anywhere.herokuapp.com/' + urlTable,
 		type : 'get',
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-		beforeSend : function(){
+        crossDomain: true,
+        beforeSend : function(){
 		}
 	})
 	.done(function(result){
